@@ -19,13 +19,6 @@ app.use(express.static("public"));
 
   app.use("/api", apiRouter);
 
-  app.use((req, res, next) => {
-    try {
-      res.sendFile(join(_dirname, "../../public/index.html"));
-    } catch (error) {
-      next(error);
-    }
-  });
 
 
 app.use((err, req, res, next) => {

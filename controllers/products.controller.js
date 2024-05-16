@@ -23,7 +23,7 @@ async function removeOne(productId) {
 };
 
 //Export the entire module as the default export
-export default {
+export  {
     findOne,
     findAll,
     addOne,
