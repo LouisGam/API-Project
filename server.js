@@ -1,16 +1,32 @@
 import express from "express";
 import config from "./config";
-// TODO: import router from routes/
-
-import router from "./routes/index.js";
-
+import morgan from "morgan";
+import cors from  "cors";
+import apiRouter from "./routes";
 const app = express();
-
 app.use("/api", express.json());
 
-// TODO: use the imported router to handle all requests
+app.get("/", (req, res) => {
+  res.send("working");
+});
 
-app.use("/api", router);
+app.use(cors());
+
+app.use(morgan("dev"));
+
+app.use(express.static("public"));
+ 
+
+  app.use("/api", apiRouter);
+
+  app.use((req, res, next) => {
+    try {
+      res.sendFile(join(_dirname, "../../public/index.html"));
+    } catch (error) {
+      next(error);
+    }
+  });
+
 
 app.use((err, req, res, next) => {
   console.error(err);
@@ -19,6 +35,8 @@ app.use((err, req, res, next) => {
 
 
 
-app.listen(config.port, () => {
+
+
+app.listen(config.port || 5000, () => {
   console.log(`Server listening on port ${config.port}...`);
 });
