@@ -17,17 +17,19 @@ router.get("/:id?", async (req, res, next) => {
 });
 
 router.post("/", async (req, res, next) => {
-    let data = await products.findAll();
+    let data = await products.addOne(req.body);
     res.json(data);
 });
 
 router.put("/:id", async (req, res, next) => {
-    let data = await products.findALL();
+    let { id } = req.params;
+    let data = await products.updateOne(id, req.body);
     res.json(data);
 });
 
 router.delete("/:id", async (req, res, next) => {
-    let data = await products.dindAll();
+    let { id } = req.params;
+    let data = await products.removeOne(id);
 res.json(data);
 });
 

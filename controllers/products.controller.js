@@ -13,8 +13,8 @@ async function addOne(product) {
     return await query('INSERT INTO products (ProductID, Name, Price, CategoryID, OnSale, StockLevel) VALUES(?, ?, ?, ?, ?, ?)', [product.ProductID, product.Name, product.Price, product.CategoryID, product.OnSale, product.StockLevel ] )
 };
 
-async function updateOne(productId, products) {
-    return await query('UPDATE products SET ? WHERE ProductID = ?', [products, productId]);
+async function updateOne(productId, product) {
+    return await query('UPDATE products SET ? WHERE ProductID = ?', [product, productId]);
 };
 
 async function removeOne(productId) {
