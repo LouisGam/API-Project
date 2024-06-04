@@ -1,5 +1,5 @@
 import express from "express";
-import * as products from "../controllers/products.controller";
+import * as foods from "../controllers/foods.controller";
 
 const router = express.Router();
 
@@ -8,28 +8,28 @@ router.get("/:id?", async (req, res, next) => {
     let data;
 
     if (id) {
-        data = await products.findOne(id);
+        data = await foods.findOne(id);
     } else {
-        data = await products.findAll();
+        data = await foods.findAll();
     }
 
     res.json(data);
 });
 
 router.post("/", async (req, res, next) => {
-    let data = await products.addOne(req.body);
+    let data = await foods.addOne(req.body);
     res.json(data);
 });
 
 router.put("/:id", async (req, res, next) => {
     let { id } = req.params;
-    let data = await products.updateOne(id, req.body);
+    let data = await foods.updateOne(id, req.body);
     res.json(data);
 });
 
 router.delete("/:id", async (req, res, next) => {
     let { id } = req.params;
-    let data = await products.removeOne(id);
+    let data = await foods.removeOne(id);
 res.json(data);
 });
 
